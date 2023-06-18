@@ -1,0 +1,141 @@
+.navi__btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+  gap: 30px;
+}
+.navi__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-height: 32px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-black);
+}
+
+.navi__btn:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+.navi__btn_account {
+  margin: 0;
+  padding: 8px 20px;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 14px;
+  border-radius: 18px;
+  background: var(--color-main-gray);
+}
+.navi__btn_big {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+.navi__btn-container_films {
+  gap: 20px;
+}
+
+@media screen and (max-width: 320px) {
+  .navi__btn {
+    font-size: 10px;
+  }
+}
+.navi__overlay {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navi__overlay {
+    display: flex;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .navi__container-box {
+    flex: 1 1 auto;
+  }
+  .navi__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 159px 90px 90px 90px;
+    width: 520px;
+    min-height: 100vh;
+    background-color: var(--color-white);
+  }
+
+  .navi__close-button {
+    margin: 0;
+    padding: 0;
+    background-image: url("../../images/close-symbol.svg");
+    position: absolute;
+    top: 22px;
+    width: 22px;
+    right: 22px;
+    border: none;
+    height: 22px;
+    background-color: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .navi__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 26px;
+  }
+  .navi__close-button:hover {
+    cursor: pointer;
+    opacity: .6;
+  }
+
+
+  .navi__item {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: var(--color-black);
+    width: max-content;
+    border-bottom: 2px solid transparent;
+  }
+
+  .navi__item_active {
+    color: var(--color-green);
+  }
+
+  .navi__item:hover {
+    border-bottom: 2px solid var(--color-black);
+  }
+}
+
+@media screen and (max-width: 478px) {
+  .navi__container-box {
+    display: flex;
+  }
+  .navi__list {
+    padding: 144px 10px 46px 10px;
+    width: 100%;
+  }
+  .navi__link {
+    gap: 22px;
+  }
+}

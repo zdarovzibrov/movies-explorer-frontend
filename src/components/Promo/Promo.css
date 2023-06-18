@@ -1,0 +1,124 @@
+.promo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 75px 70px;
+  color: var(--color-white);
+  background-color: var(--color-main-deepBlue);
+  gap: 20px;
+}
+
+.promo__title {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-size: 50px;
+  font-weight: 400;
+  max-width: 631px;
+  line-height: 58px;
+  white-space: nowrap;
+}
+.promo__subtitle {
+  margin: 0;
+  margin-bottom: 110px;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  max-width: 310px;
+  line-height: 16px;
+  mix-blend-mode: normal;
+  opacity: .5;
+}
+.promo__info {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  gap: 36px;
+}
+
+.promo__link {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 10px 20px;
+  width: 131px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background-color: inherit;
+  border: 1px solid rgb(255, 255, 255, 0.6);
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.promo__link:hover {
+  opacity: .6;
+  transition: .4s ease-in-out;
+}
+
+.promo__logo {
+  margin: 0;
+  padding: 0;
+  width: 310px;
+  height: 304px;
+  margin-right: 5px;
+  justify-self: end;
+}
+
+@media screen and (max-width: 1024px) {
+  .promo {
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+  }
+  .promo__logo {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%);
+  }
+  .promo__title {
+    text-align: center;
+    max-width: 100%;
+    font-size: 40px;
+    line-height: 50px;
+  }
+  .promo__subtitle {
+    text-align: center;
+    max-width: 40%;
+    margin-bottom: 70px;
+  }
+  .promo__info {
+    padding-top: 416px;
+    align-items: center;
+    gap: 22px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .promo {
+    padding: 70px 10px 30px 10px;
+  }
+  .promo__logo {
+    width: 210px;
+    height: 206px;
+    top: 70px;
+  }
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -0.04em;
+  }
+  .promo__subtitle {
+    margin-bottom: 54px;
+    max-width: 85%;
+  }
+  .promo__info {
+    padding-top: 250px;
+    gap: 24px;
+  }
+}
