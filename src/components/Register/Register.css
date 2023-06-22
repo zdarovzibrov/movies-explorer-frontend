@@ -62,9 +62,10 @@
   color: var(--color-attention);
   margin-top: -10px;
 }
-.form__input:focus {
-  border: 1px solid var(--color-blue);
+.regform__input:focus {
+  border: 1px solid var(--color-main-lightGray);
 }
+
 
 .user-form__button {
   margin: 0;

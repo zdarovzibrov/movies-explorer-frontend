@@ -8,7 +8,7 @@ export default function Layout({ banner, isMain, isLogged, showFooter }) {
   const isProfilePage = location.pathname === "/profile";
 
   return (
-    <>
+    <div className="container__main">
       <Header isDark={isMain} isLogged={isLogged} />
       {banner && banner}
       <div className="page">
@@ -19,6 +19,6 @@ export default function Layout({ banner, isMain, isLogged, showFooter }) {
         </div>
       </div>
       {!isProfilePage && showFooter && <Footer />}
-    </>
+    </div>
   );
 }

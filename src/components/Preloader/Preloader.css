@@ -40,7 +40,7 @@
 }
 
 .preloader {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -77,7 +77,7 @@
 }
 
 .preloader__round::after {
-  background: white;
+  background: var(--color-white);
   animation: preloader-inside-white 2s ease-in infinite;
 }
 

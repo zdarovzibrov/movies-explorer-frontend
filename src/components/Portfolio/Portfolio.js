@@ -13,7 +13,7 @@ export default function Portfolio() {
           rel="noreferrer"
         >
           <h4 className="portfolio__desc">Статичный сайт</h4>
-          <p className="portfolio__link_icon">↗</p>
+          <div className="portfolio__link-icon"></div>
         </a>
         <a
           className="portfolio__link"
@@ -22,7 +22,7 @@ export default function Portfolio() {
           rel="noreferrer"
         >
           <h4 className="portfolio__desc">Адаптивный сайт</h4>
-          <p className="portfolio__link_icon">↗</p>
+          <div className="portfolio__link-icon"></div>
         </a>
         <a
           className="portfolio__link"
@@ -31,7 +31,7 @@ export default function Portfolio() {
           rel="noreferrer"
         >
           <h4 className="portfolio__desc">Одностраничное приложение</h4>
-          <p className="portfolio__link_icon">↗</p>
+          <div className="portfolio__link-icon"></div>
         </a>
       </nav>
     </section>

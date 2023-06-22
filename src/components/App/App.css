@@ -3,6 +3,14 @@
   min-height: 100vh;
 }
 
+.container__main {
+  margin: 0 auto;
+  font-family: "Inter", Arial, sans-serif;
+  width: 100%;
+  max-width: 1280px;
+  min-width: 320px;
+}
+
 .page__content {
   margin: 0 auto;
   font-family: "Inter", Arial, sans-serif;

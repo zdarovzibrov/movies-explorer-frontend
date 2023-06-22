@@ -41,7 +41,7 @@
   line-height: 16px;
 }
 .form__input:invalid {
-  border: 1px solid var(--color-attention);
+  border: 1px solid var(--color-toggle-gray);
 }
 
 .form__input::placeholder {
@@ -50,6 +50,9 @@
 
 .form__input:focus::placeholder {
   color: var(--color-toggle-gray);
+}
+.logform__input:focus {
+  border: 1px solid var(--color-main-lightGray);
 }
 
 .user-form__field {
@@ -62,10 +65,7 @@
   gap: 10px;
   color: var(--color-main-lightGray);
 }
-.form__input:focus {
-  background-color: inherit;
-  outline: 1px solid var(--color-main-gray);
-}
+
 .user-form__button {
   margin: 0;
   margin-top: auto;

@@ -17,7 +17,7 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="container__main">
       <div className="login">
         <Link to="/" className="login__logo">
           <img src={logo} alt="Логотип" />
@@ -25,29 +25,28 @@ function Login() {
         <h2 className="login__title">Рады видеть!</h2>
 
         <form className="user-form" onSubmit={handleSubmit}>
-        <label className="user-form__field">
-  E-mail
-  <input
-    className={`form__input form__input_type_email user-form__input ${
-      isErrors.email ? "register__input-invalid" : ""
-    }`}
-    id="input-userEmail"
-    name="email"
-    type="email"
-    autoComplete="off"
-    value={isValues.email || ""}
-    onChange={handleChangeInput}
-    required
-    placeholder="pochta@yandex.ru"
-  />
-  <span className="register__error">{isErrors.email}</span>
-</label>
-
+          <label className="user-form__field">
+            E-mail
+            <input
+              className={`form__input form__input_type_email user-form__input logform__input ${
+                isErrors.email ? "register__input-invalid" : ""
+              }`}
+              id="input-userEmail"
+              name="email"
+              type="email"
+              autoComplete="off"
+              value={isValues.email || ""}
+              onChange={handleChangeInput}
+              required
+              placeholder="pochta@yandex.ru"
+            />
+            <span className="register__error">{isErrors.email}</span>
+          </label>
 
           <label className="user-form__field">
             Пароль
             <input
-              className={`form__input form__input_type user-form__input ${
+              className={`form__input form__input_type user-form__input logform__input ${
                 isErrors.password ? "register__input-invalid" : ""
               }`}
               id="input-password"
@@ -79,7 +78,7 @@ function Login() {
           </p>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
