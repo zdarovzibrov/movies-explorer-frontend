@@ -18,6 +18,9 @@
   line-height: 16px;
   color: var(--color-black);
 }
+.header_dark .navi__btn-link {
+  color: var(--color-white);
+}
 
 .navi__btn:hover {
   cursor: pointer;
@@ -31,6 +34,9 @@
   font-size: 14px;
   border-radius: 18px;
   background: var(--color-main-gray);
+}
+.navi__btn_end {
+  margin-top: auto;
 }
 .navi__btn_big {
   font-weight: 500;
@@ -78,7 +84,7 @@
   .navi__close-button {
     margin: 0;
     padding: 0;
-    background-image: url("../../images/close-symbol.svg");
+    background-image: url("../../images/del-symbol.svg");
     position: absolute;
     top: 22px;
     width: 22px;
@@ -97,6 +103,7 @@
     margin: 0;
     padding: 0;
     gap: 26px;
+    height: 100%;
   }
   .navi__close-button:hover {
     cursor: pointer;
@@ -124,6 +131,9 @@
 
   .navi__item:hover {
     border-bottom: 2px solid var(--color-black);
+  }
+  .navi__btn-container {
+    display: none;
   }
 }
 

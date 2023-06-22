@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FormValidation from "../../hooks/FormValidation";
 import "./Register.css";
@@ -6,6 +6,11 @@ import logo from "../../images/circle-logo.svg";
 
 export default function Register() {
   const { isErrors, isValues, isValid, handleChangeInput } = FormValidation();
+  const [focusedField, setFocusedField] = useState("");
+
+  const handleFocus = (field) => {
+    setFocusedField(field);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,7 +39,9 @@ export default function Register() {
             Имя
             <input
               className={`form__input form__input_type_name user-form__input ${
-                isErrors.name ? "register__input-invalid" : ""
+                isErrors.name || (focusedField === "name" && !isValues.name)
+                  ? "register__input-invalid"
+                  : ""
               }`}
               id="input-userName"
               name="name"
@@ -42,10 +49,18 @@ export default function Register() {
               autoComplete="off"
               value={isValues.name || ""}
               onChange={handleChangeInput}
+              onFocus={() => handleFocus("name")}
+              onBlur={() => handleFocus("")}
               required
+              placeholder="Виталий"
             />
             {isErrors.name && (
               <span className="register__error">{isErrors.name}</span>
+            )}
+            {focusedField === "name" && !isValues.name && (
+              <span className="register__error">
+                Поле не должно быть пустым
+              </span>
             )}
           </label>
 
@@ -53,7 +68,9 @@ export default function Register() {
             E-mail
             <input
               className={`form__input form__input_type_email user-form__input ${
-                isErrors.email ? "register__input-invalid" : ""
+                isErrors.email || (focusedField === "email" && !isValues.email)
+                  ? "register__input-invalid"
+                  : ""
               }`}
               id="input-userEmail"
               name="email"
@@ -61,10 +78,18 @@ export default function Register() {
               autoComplete="off"
               value={isValues.email || ""}
               onChange={handleChangeInput}
+              onFocus={() => handleFocus("email")}
+              onBlur={() => handleFocus("")}
               required
+              placeholder="pochta@yandex.ru"
             />
             {isErrors.email && (
               <span className="register__error">{isErrors.email}</span>
+            )}
+            {focusedField === "email" && !isValues.email && (
+              <span className="register__error">
+                Поле не должно быть пустым
+              </span>
             )}
           </label>
 
@@ -72,20 +97,33 @@ export default function Register() {
             Пароль
             <input
               className={`form__input form__input_type_password user-form__input ${
-                isErrors.password ? "register__input-invalid" : ""
+                isErrors.password ||
+                (focusedField === "password" && !isValues.password)
+                  ? "register__input-invalid"
+                  : ""
               }`}
               id="input-password"
               name="password"
               type="password"
               value={isValues.password || ""}
               onChange={handleChangeInput}
+              onFocus={() => handleFocus("password")}
+              onBlur={() => handleFocus("")}
               required
+              placeholder="Придумайте пароль"
               minLength={5}
             />
             {isErrors.password && (
               <span className="register__error">{isErrors.password}</span>
             )}
+            {focusedField === "password" && !isValues.password && (
+              <span className="register__error">
+                Поле не должно быть пустым
+              </span>
+
+            )}
           </label>
+          <p className="form__error-text">Что-то пошло не так...</p>
 
           <button className="user-form__button" type="submit">
             Зарегистрироваться

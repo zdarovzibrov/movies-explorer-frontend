@@ -1,5 +1,4 @@
 import "./Profile.css";
-import Header from "../Header/Header";
 import FormValidation from "../../hooks/FormValidation";
 
 export default function Profile() {
@@ -11,7 +10,6 @@ export default function Profile() {
 
   return (
     <>
-      <Header />
       <div className="profile">
         <h2 className="profile__title">Привет, Михаил!</h2>
 

@@ -25,29 +25,29 @@ function Login() {
         <h2 className="login__title">Рады видеть!</h2>
 
         <form className="user-form" onSubmit={handleSubmit}>
-          <label className="user-form__field">
-            E-mail
-            <input
-              className={`form__input form__input_type_email user-form__input ${
-                isErrors.email ? "register__input-invalid" : ""
-              }`}
-              id="input-userEmail"
-              name="email"
-              type="email"
-              autoComplete="off"
-              value={isValues.email || ""}
-              onChange={handleChangeInput}
-              required
-            />
-            {isErrors.email && (
-              <span className="register__error">{isErrors.email}</span>
-            )}
-          </label>
+        <label className="user-form__field">
+  E-mail
+  <input
+    className={`form__input form__input_type_email user-form__input ${
+      isErrors.email ? "register__input-invalid" : ""
+    }`}
+    id="input-userEmail"
+    name="email"
+    type="email"
+    autoComplete="off"
+    value={isValues.email || ""}
+    onChange={handleChangeInput}
+    required
+    placeholder="pochta@yandex.ru"
+  />
+  <span className="register__error">{isErrors.email}</span>
+</label>
+
 
           <label className="user-form__field">
             Пароль
             <input
-              className={`form__input form__input_type_password user-form__input ${
+              className={`form__input form__input_type user-form__input ${
                 isErrors.password ? "register__input-invalid" : ""
               }`}
               id="input-password"
@@ -56,6 +56,7 @@ function Login() {
               value={isValues.password || ""}
               onChange={handleChangeInput}
               required
+              placeholder="Введите пароль"
             />
             {isErrors.password && (
               <span className="register__error">{isErrors.password}</span>

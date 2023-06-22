@@ -4,7 +4,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <>
-      <footer className="footer">
+      <footer className="footer page__content">
         <h5 className="footer__title">
           Учебный проект Яндекс.Практикум х BeatFilm.
         </h5>

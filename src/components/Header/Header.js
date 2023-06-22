@@ -5,7 +5,7 @@ import menu from "../../images/nav-btn.svg";
 import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 
-export default function Header({ isLogged }) {
+export default function Header({ isLogged, isDark }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,7 +13,8 @@ export default function Header({ isLogged }) {
   };
 
   return (
-    <header className={`header ${isLogged ? "header__main" : ""}`} id="header">
+    <header className={`header ${isDark ? "header_dark page__content" : ""}`} id="header">
+      <div className={`header__inner page__content`}>
       <Link to="/" className="header__logo">
         <img src={logo} alt="Логотип приложения" />
       </Link>
@@ -24,7 +25,7 @@ export default function Header({ isLogged }) {
       >
         {isLogged ? (
           <>
-            <Navigation isOpen={isMenuOpen} />
+            <Navigation isOpen={isMenuOpen} onClose={toggleMenu} />
             <button
               className="header__btn header__btn_burger"
               onClick={toggleMenu}
@@ -34,7 +35,7 @@ export default function Header({ isLogged }) {
           </>
         ) : (
           <>
-            <Link to="/signup" className="header__btn header__btn_white">
+            <Link to="/signup" className="header__btn header__btn-link">
               Регистрация
             </Link>
             <Link to="/signin" className="header__btn header__btn_signin">
@@ -42,6 +43,7 @@ export default function Header({ isLogged }) {
             </Link>
           </>
         )}
+      </div>
       </div>
     </header>
   );

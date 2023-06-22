@@ -64,7 +64,7 @@
   background-color: var(--color-green);
 }
 .film-card__trash-btn {
-  background-image: url("../../images/del-symbol.svg");
+  background-image: url("../../images/close-symbol.svg");
   height: 16px;
   width: 16px;
   border: none;
