@@ -2,12 +2,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
 
-const MoviesCard = ({id, image, title, duration, isSelected, onSelect, onDelete}) => {
-
+const MoviesCard = ({ id, image, title, duration, isSelected, onSelect, onDelete }) => {
   const { pathname } = useLocation();
 
   return (
-    <>
+    <main>
       <li className="film-card">
         <img className="film-card__element" src={image} alt="Изображение карты фильма" />
         <div className="film-card__element__container">
@@ -18,9 +17,7 @@ const MoviesCard = ({id, image, title, duration, isSelected, onSelect, onDelete}
           {pathname === "/movies" ? (
             <button
               type="button"
-              className={`film-card__like-btn${
-                  isSelected ? " film-card__like-btn_active" : ""
-              }`}
+              className={`film-card__like-btn${isSelected ? " film-card__like-btn_active" : ""}`}
               onClick={() => onSelect(id)}
             />
           ) : (
@@ -32,7 +29,7 @@ const MoviesCard = ({id, image, title, duration, isSelected, onSelect, onDelete}
           )}
         </div>
       </li>
-    </>
+    </main>
   );
 };
 

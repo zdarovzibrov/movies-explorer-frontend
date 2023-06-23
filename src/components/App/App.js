@@ -15,7 +15,9 @@ function App() {
   return (
     <Routes>
       <Route
-        element={<Layout isMain={true} isLogged={false} banner={<Promo />} showFooter={true} />}
+        element={
+          <Layout isMain={true} isLogged={false} banner={<Promo />} showFooter={true} />
+        }
       >
         <Route path="/" element={<Main />} />
       </Route>

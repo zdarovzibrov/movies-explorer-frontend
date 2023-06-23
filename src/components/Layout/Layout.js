@@ -13,7 +13,7 @@ export default function Layout({ banner, isMain, isLogged, showFooter }) {
       {banner && banner}
       <div className="page">
         <div className="page__content">
-          <main>
+          <main> {/* Разметитка семантичным тегом main */}
             <Outlet />
           </main>
         </div>

@@ -3,7 +3,7 @@ import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-export default function MoviesCardList({movies, onDeleteMovie}) {
+export default function MoviesCardList({ movies, onDeleteMovie }) {
   const [selectedMovies, setSelectedMovies] = useState(new Set());
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +27,7 @@ export default function MoviesCardList({movies, onDeleteMovie}) {
   }
 
   function handleDelete(id) {
-    onDeleteMovie && onDeleteMovie(id)
+    onDeleteMovie && onDeleteMovie(id);
   }
 
   const preloader = [...new Array(4)].map((element, index) => (
@@ -35,26 +35,27 @@ export default function MoviesCardList({movies, onDeleteMovie}) {
   ));
 
   return (
-    <div className="film-card-list">
-      <ul className="film-card-list__container">
-        {loading && preloader}
-        {!loading &&
+    <>
+      <main className="film-card-list">
+        <ul className="film-card-list__container">
+          {loading && preloader}
+          {!loading &&
             Array.isArray(movies) &&
             movies.map((movie) => (
-                <MoviesCard
-                    key={movie.id}
-                    id={movie.id}
-                    title={movie.title}
-                    image={movie.image}
-                    duration={movie.duration}
-                    onSelect={() => handleFavoriteToggle(movie.id)}
-                    onDelete={(id) => handleDelete(movie.id)}
-                    isSelected={selectedMovies.has(movie.id)}
-                />
-            )
-        )}
-      </ul>
-      <button className="film-card-list__btn">Ещё</button>
-    </div>
+              <MoviesCard
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                image={movie.image}
+                duration={movie.duration}
+                onSelect={() => handleFavoriteToggle(movie.id)}
+                onDelete={(id) => handleDelete(movie.id)}
+                isSelected={selectedMovies.has(movie.id)}
+              />
+            ))}
+        </ul>
+        <button className="film-card-list__btn">Ещё</button>
+      </main>
+    </>
   );
 }

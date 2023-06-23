@@ -105,9 +105,10 @@
     gap: 26px;
     height: 100%;
   }
+
   .navi__close-button:hover {
     cursor: pointer;
-    opacity: .6;
+    opacity: .4;
   }
 
 
@@ -130,6 +131,7 @@
   }
 
   .navi__item:hover {
+    opacity: .5;
     border-bottom: 2px solid var(--color-black);
   }
   .navi__btn-container {
