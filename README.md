@@ -3,12 +3,8 @@
 ###### *Фронтенд. Диплом. Зибров Михаил*
 #### https://github.com/zdarovzibrov/movies-explorer-frontend
 ###### *Ссылка на макет:* ``` Яндекс диск: https://disk.yandex.ru/d/uZEH13qfWJvquQ ```
-# Приложение Movies Explorer
-| Метод запроса | Описание |
-|-----------|----------------|
-| `name `      | «Жак-Ив Кусто»; |
-| `about `      | «Исследователь»; |
-| `avatar`      |<img width="130" src="https://i.yapx.ru/V8WSX.jpg">  |
+![Скриншот-23-06-2023-104254](https://github.com/zdarovzibrov/first-project/assets/33165240/67cbaba5-967d-4f0a-a2a4-18ee928b1b3f)
+
 #### *Описание*
 ---
 Приложение Movies Explorer - сервис с поиском фильмов и сохранением их в личном кабинете.
