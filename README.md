@@ -4,6 +4,8 @@
 #### https://github.com/zdarovzibrov/movies-explorer-frontend
 ###### *Ссылка на макет:* ``` Яндекс диск: https://disk.yandex.ru/d/uZEH13qfWJvquQ ```
 # Приложение Movies Explorer
+### Регистрация и авторизация на бэкенде
+<img width="500" src="https://i.yapx.ru/WMgq1.jpg">
 #### *Описание*
 ---
 Приложение Movies Explorer - сервис с поиском фильмов и сохранением их в личном кабинете.
