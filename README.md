@@ -1,10 +1,10 @@
 #### *movies-explorer-frontend*
 ---
 ### Регистрация и авторизация на бэкенде
-<img width="640" src="https://i.yapx.ru/WMgq1.jpg">
+<img width="500" src="https://i.yapx.ru/WMgq1.jpg">
 ###### *Фронтенд. Диплом. Зибров Михаил*
 #### https://github.com/zdarovzibrov/movies-explorer-frontend
- ###### *Ссылка на макет:* ``` Яндекс диск: https://disk.yandex.ru/d/uZEH13qfWJvquQ ```
+###### *Ссылка на макет:* ``` Яндекс диск: https://disk.yandex.ru/d/uZEH13qfWJvquQ ```
 # Приложение Movies Explorer
 #### *Описание*
 ---
