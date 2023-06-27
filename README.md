@@ -3,7 +3,7 @@
 ###### *Фронтенд. Диплом. Зибров Михаил*
 #### https://github.com/zdarovzibrov/movies-explorer-frontend
 ###### *Ссылка на макет:* ``` Яндекс диск: https://disk.yandex.ru/d/uZEH13qfWJvquQ ```
-![Скриншот-23-06-2023-104254](https://github.com/zdarovzibrov/first-project/assets/33165240/67cbaba5-967d-4f0a-a2a4-18ee928b1b3f)
+![Скриншот-23-06-2023-104254](https://github.com/zdarovzibrov/first-project/assets/33165240/ed6bf9cf-993e-4a28-90f4-ca3961b85847)
 
 #### *Описание*
 ---
