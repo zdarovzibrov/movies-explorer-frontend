@@ -4,8 +4,11 @@
 #### https://github.com/zdarovzibrov/movies-explorer-frontend
 ###### *Ссылка на макет:* ``` Яндекс диск: https://disk.yandex.ru/d/uZEH13qfWJvquQ ```
 # Приложение Movies Explorer
-### Регистрация и авторизация на бэкенде
-<img width="500" src="https://i.yapx.ru/WMgq1.jpg">
+| Метод запроса | Описание |
+|-----------|----------------|
+| `name `      | «Жак-Ив Кусто»; |
+| `about `      | «Исследователь»; |
+| `avatar`      |<img width="130" src="https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png">  |
 #### *Описание*
 ---
 Приложение Movies Explorer - сервис с поиском фильмов и сохранением их в личном кабинете.
