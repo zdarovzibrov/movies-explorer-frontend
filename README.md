@@ -8,7 +8,7 @@
 |-----------|----------------|
 | `name `      | «Жак-Ив Кусто»; |
 | `about `      | «Исследователь»; |
-| `avatar`      |<img width="130" src="https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png">  |
+| `avatar`      |<img width="130" src="https://i.yapx.ru/V8WSX.jpg">  |
 #### *Описание*
 ---
 Приложение Movies Explorer - сервис с поиском фильмов и сохранением их в личном кабинете.
