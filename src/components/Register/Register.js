@@ -4,21 +4,16 @@ import FormValidation from "../../hooks/FormValidation";
 import "./Register.css";
 import logo from "../../images/circle-logo.svg";
 
-export default function Register() {
+export default function Register({ onRegister }) {
   const { isErrors, isValues, isValid, handleChangeInput } = FormValidation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    onRegister( isValues )
     if (!isValid) {
       return;
     }
 
-    const values = {
-      name: isValues.name,
-      email: isValues.email,
-      password: isValues.password,
-    };
-    console.log(values);
   };
 
   return (
@@ -44,7 +39,7 @@ export default function Register() {
                 value={isValues.name || ""}
                 onChange={handleChangeInput}
                 required
-                placeholder="Виталий"
+                placeholder="Имя"
               />
               {isErrors.name && (
                 <span className="register__error">{isErrors.name}</span>
@@ -64,7 +59,7 @@ export default function Register() {
                 value={isValues.email || ""}
                 onChange={handleChangeInput}
                 required
-                placeholder="pochta@yandex.ru"
+                placeholder="E-mail"
               />
               {isErrors.email && (
                 <span className="register__error">{isErrors.email}</span>

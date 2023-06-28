@@ -36,7 +36,7 @@
   left: 1px;
   content: "";
   border-radius: 50%;
-  transition: 0.4s ease-in-out;
+  transition: .4s ease-in-out;
   border: 1px solid var(--color-white);
   background-color: var(--color-tech-gray);
 }
@@ -49,7 +49,7 @@
   top: 1px;
   right: 1px;
   border-radius: 50%;
-  transition: 0.4s ease-in-out;
+  transition: .4s ease-in-out;
   transform: translate(16px);
   background-color: var(--color-green);
 }

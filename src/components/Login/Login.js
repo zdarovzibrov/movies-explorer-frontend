@@ -4,16 +4,12 @@ import { Link } from "react-router-dom";
 import logo from "../../images/circle-logo.svg";
 import FormValidation from "../../hooks/FormValidation";
 
-function Login() {
+function Login({ onLogin }) {
   const { isErrors, isValues, isValid, handleChangeInput } = FormValidation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const values = {
-      email: isValues.email,
-      password: isValues.password,
-    };
-    console.log(values);
+    onLogin( isValues )
   };
 
   return (
@@ -38,7 +34,7 @@ function Login() {
               value={isValues.email || ""}
               onChange={handleChangeInput}
               required
-              placeholder="pochta@yandex.ru"
+              placeholder="E-mail"
             />
             <span className="register__error">{isErrors.email}</span>
           </label>

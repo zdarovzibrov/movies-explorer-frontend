@@ -1,26 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import SearchForm from '../SearchForm/SearchForm'
+import {filterDuration, filterMovies} from "../../utils/utils";
 
-const movieData = [
-    { id: 1, image: '/images/movies/picture_1.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 2, image: '/images/movies/picture_2.png', title: "34 слова о дизайне", duration: "1ч42м" },
-    { id: 4, image: '/images/movies/picture_4.png', title: "36 слов о дизайне", duration: "1ч42м" },
-];
+export default function SavedMovies({ savedMovies, onCardDelete }) {
+    const [filteredMovies, setFilteredMovies] = useState(savedMovies);
+    const [isShortMovies, setIsShortMovies] = useState(false);
+    const [isNotFound, setIsNotFound] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
-export default function SavedMovies() {
-    const [movies, setMovies] = useState(movieData);
-
-    function handleDelete(id) {
-        setMovies((prevState) => {
-            return prevState.filter((movie) => movie.id !== id)
-        })
+    function onSearchMovies(query) {
+        setSearchQuery(query);
     }
+
+    function handleShortMovies() {
+        setIsShortMovies(!isShortMovies);
+    }
+
+    useEffect(() => {
+        const moviesList = filterMovies(savedMovies, searchQuery);
+        setFilteredMovies(isShortMovies ? filterDuration(moviesList) : moviesList);
+    }, [savedMovies, isShortMovies, searchQuery]);
+
+    useEffect(() => {
+        if (filteredMovies.length === 0) {
+            setIsNotFound(true);
+        } else {
+            setIsNotFound(false);
+        }
+    }, [filteredMovies]);
 
     return (
         <>
-            <SearchForm />
-            <MoviesCardList movies={movies} onDeleteMovie={(id) => handleDelete(id)} />
+            <SearchForm
+                onSearchMovies={onSearchMovies}
+                onFilter={handleShortMovies}
+                isShortMovies={isShortMovies}/>
+            <MoviesCardList movies={filteredMovies}
+                isSavedFilms={true}
+                isNotFound={isNotFound}
+                savedMovies={savedMovies}
+                onCardDelete={onCardDelete} />
         </>
     )
 }

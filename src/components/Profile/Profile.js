@@ -1,17 +1,27 @@
 import "./Profile.css";
+import { useEffect, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import FormValidation from "../../hooks/FormValidation";
 
-export default function Profile() {
-  const { isErrors, isValues, isValid, handleChangeInput } = FormValidation();
+export default function Profile({ onLogout, handleProfile }) {
+  const { isErrors, isValues, isValid, handleChangeInput, resetForm } = FormValidation();
+  const currentUser = useContext(CurrentUserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    handleProfile(isValues);
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm(currentUser, {}, true);
+    }
+  }, [currentUser, resetForm]);
 
   return (
     <>
       <div className="profile">
-        <h2 className="profile__title">Привет, Михаил!</h2>
+        <h2 className="profile__title">Привет, {currentUser.name}!</h2>
 
         <form className="profile__form" onSubmit={handleSubmit}>
           <label
@@ -28,7 +38,7 @@ export default function Profile() {
               name="name"
               type="text"
               autoComplete="off"
-              value={isValues.name || "Виталий"}
+              value={isValues.name || ""}
               onChange={handleChangeInput}
             />
             {isErrors.name && (
@@ -50,7 +60,7 @@ export default function Profile() {
               name="email"
               type="email"
               autoComplete="off"
-              value={isValues.email || "pochta@yandex.ru"}
+              value={isValues.email || ""}
               onChange={handleChangeInput}
             />
             {isErrors.email && (
@@ -67,7 +77,7 @@ export default function Profile() {
             >
               Редактировать
             </button>
-            <button className="profile__logout" type="button">
+            <button className="profile__logout" type="button" onClick={onLogout} to={"/sign-in"}>
               Выйти из аккаунта
             </button>
           </div>

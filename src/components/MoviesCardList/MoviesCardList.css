@@ -37,7 +37,7 @@
 .film-card-list__btn:hover {
   cursor: pointer;
   background-color: var(--color-tech-deepGray);
-  transition: 0.8s ease-in-out;
+  transition: .8s ease-in-out;
 }
 
 @media screen and (max-width: 1180px) {

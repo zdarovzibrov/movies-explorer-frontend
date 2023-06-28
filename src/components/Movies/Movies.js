@@ -1,31 +1,114 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
+import {filterDuration, filterMovies} from "../../utils/utils";
+import {moviesApi} from "../../utils/MoviesApi";
 
-const movieData = [
-    { id: 1, image: '/images/movies/picture_1.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 2, image: '/images/movies/picture_2.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 3, image: '/images/movies/picture_3.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 4, image: '/images/movies/picture_4.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 5, image: '/images/movies/picture_5.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 6, image: '/images/movies/picture_6.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 7, image: '/images/movies/picture_7.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 8, image: '/images/movies/picture_8.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 9, image: '/images/movies/picture_9.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 10, image: '/images/movies/picture_10.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 11, image: '/images/movies/picture_11.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 12, image: '/images/movies/picture_12.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 13, image: '/images/movies/picture_13.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 14, image: '/images/movies/picture_14.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 15, image: '/images/movies/picture_15.png', title: "33 слова о дизайне", duration: "1ч42м" },
-    { id: 16, image: '/images/movies/picture_16.png', title: "33 слова о дизайне", duration: "1ч42м" },
-];
 
-export default function Movies() {
+export default function Movies({ handleLikeClick, savedMovies, onCardDelete }) {
+    const [isLoading, setIsLoading] = useState(false);
+    const [initialMovies, setInitialMovies] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [isShortMovies, setIsShortMovies] = useState(false);
+    const [isReqErr, setIsReqErr] = useState(false);
+    const [isNotFound, setIsNotFound] = useState(false);
+
+    function handleFilterMovies(movies, query, short) {
+        const moviesList = filterMovies(movies, query, short);
+        setInitialMovies(moviesList);
+        setFilteredMovies(short ? filterDuration(moviesList) : moviesList);
+        localStorage.setItem('movies', JSON.stringify(moviesList));
+        localStorage.setItem('allMovies', JSON.stringify(movies));
+    }
+
+    function handleShortMovies() {
+        setIsShortMovies(!isShortMovies);
+        if (!isShortMovies) {
+            if (filterDuration(initialMovies).length === 0) {
+                setFilteredMovies(filterDuration(initialMovies));
+            } else {
+                setFilteredMovies(filterDuration(initialMovies));
+            }
+        } else {
+            setFilteredMovies(initialMovies);
+        }
+        localStorage.setItem('shortMovies', !isShortMovies);
+    }
+
+    function onSearchMovies(query) {
+        localStorage.setItem('movieSearch', query);
+        localStorage.setItem('shortMovies', isShortMovies);
+
+        if (localStorage.getItem('allMovies')) {
+            const movies = JSON.parse(localStorage.getItem('allMovies'));
+            handleFilterMovies(movies, query, isShortMovies);
+        } else {
+            setIsLoading(true);
+            moviesApi
+                .getAllMovies()
+                .then((movies) => {
+                    handleFilterMovies(movies, query, isShortMovies);
+                    setIsReqErr(false);
+                })
+                .catch((err) => {
+                    setIsReqErr(true);
+                    console.log(err);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        }
+
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('shortMovies') === 'true') {
+            setIsShortMovies(true);
+        } else {
+            setIsShortMovies(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem('movies')) {
+            const movies = JSON.parse(localStorage.getItem('movies'));
+            setInitialMovies(movies);
+            if (localStorage.getItem('shortMovies') === 'true') {
+                setFilteredMovies(filterDuration(movies));
+            } else {
+                setFilteredMovies(movies);
+            }
+        } else {
+        }
+    }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem('movieSearch')) {
+            if (filteredMovies.length === 0) {
+                setIsNotFound(true);
+            } else {
+                setIsNotFound(false);
+            }
+        } else {
+            setIsNotFound(false);
+        }
+    }, [filteredMovies]);
+
   return (
     <>
-      <SearchForm />
-      <MoviesCardList movies={movieData} />
+      <SearchForm
+          onSearchMovies={onSearchMovies}
+          onFilter={handleShortMovies}
+          isShortMovies={isShortMovies}/>
+
+      <MoviesCardList savedMovies={savedMovies}
+                      movies={filteredMovies}
+                      isSavedFilms={false}
+                      isLoading={isLoading}
+                      isReqErr={isReqErr}
+                      isNotFound={isNotFound}
+                      handleLikeClick={handleLikeClick}
+                      onCardDelete={onCardDelete}/>
     </>
   );
 }
