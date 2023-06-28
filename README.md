@@ -1,5 +1,5 @@
 #### *movies-explorer-frontend*
-##### *Ссылка на пулреквест по этапу Функциональность на «React» и JS :* https://github.com/zdarovzibrov/movies-explorer-frontend/pull/2
+### *Ссылка на пулреквест по этапу Функциональность на «React» и JS :* https://github.com/zdarovzibrov/movies-explorer-frontend/pull/2
 ---
 ###### *Фронтенд. Диплом. Зибров Михаил*
 #### https://github.com/zdarovzibrov/movies-explorer-frontend
