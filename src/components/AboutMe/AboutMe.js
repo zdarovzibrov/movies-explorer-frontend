@@ -12,7 +12,7 @@ export default function AboutMe() {
           <div className="about-me__desc">
             <div className="about-me__name-info">
               <h3 className="about-me__title">Михаил</h3>
-              <p className="about-me__details">Студент ЯП, 43 года</p>
+              <p className="about-me__details">Студент ЯП, 44 года</p>
               <p className="about-me__text">
                 Родился и вырос городе Симферополе где и проживаю по сей день.
                 В 2003 году закончил строительный факультет
