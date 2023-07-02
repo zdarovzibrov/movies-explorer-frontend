@@ -1,48 +1,64 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import FormValidation from "../../hooks/FormValidation";
-import "./Register.css";
-import logo from "../../images/circle-logo.svg";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import FormValidation from '../../hooks/FormValidation';
+import './Register.css';
+import logo from '../../images/circle-logo.svg';
 
 export default function Register({ onRegister }) {
-  const { isErrors, isValues, isValid, handleChangeInput } = FormValidation();
+  const { errors, values, isValid, handleChangeInput } = FormValidation();
+  const [error, setError] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onRegister( isValues )
+    onRegister(values, setError);
     if (!isValid) {
       return;
     }
-
   };
+  const isDisable =
+    !values.name ||
+    !values.email ||
+    !values.password ||
+    !!errors?.name ||
+    !!errors?.email ||
+    !!errors?.password;
 
   return (
     <>
       <div className="container__main">
         <div className="register">
-          <Link to="/" className="register__logo">
-            <img src={logo} alt="Логотип" />
+          <Link
+            to="/"
+            className="register__logo"
+          >
+            <img
+              src={logo}
+              alt="Логотип"
+            />
           </Link>
           <h2 className="register__title">Добро пожаловать!</h2>
 
-          <form className="user-form" onSubmit={handleSubmit}>
+          <form
+            className="user-form"
+            onSubmit={handleSubmit}
+          >
             <label className="user-form__field">
               Имя
               <input
                 className={`form__input form__input_type_name user-form__input ${
-                  isErrors.name ? "register__input-invalid" : ""
+                  errors.name ? 'register__input-invalid' : ''
                 }`}
                 id="input-userName"
                 name="name"
                 type="text"
                 autoComplete="off"
-                value={isValues.name || ""}
+                value={values.name || ''}
                 onChange={handleChangeInput}
                 required
                 placeholder="Имя"
               />
-              {isErrors.name && (
-                <span className="register__error">{isErrors.name}</span>
+              {errors.name && (
+                <span className="register__error">{errors.name}</span>
               )}
             </label>
 
@@ -50,19 +66,19 @@ export default function Register({ onRegister }) {
               E-mail
               <input
                 className={`form__input form__input_type_email user-form__input ${
-                  isErrors.email ? "register__input-invalid" : ""
+                  errors.email ? 'register__input-invalid' : ''
                 }`}
                 id="input-userEmail"
                 name="email"
                 type="email"
                 autoComplete="off"
-                value={isValues.email || ""}
+                value={values.email || ''}
                 onChange={handleChangeInput}
                 required
                 placeholder="E-mail"
               />
-              {isErrors.email && (
-                <span className="register__error">{isErrors.email}</span>
+              {errors.email && (
+                <span className="register__error">{errors.email}</span>
               )}
             </label>
 
@@ -70,29 +86,35 @@ export default function Register({ onRegister }) {
               Пароль
               <input
                 className={`form__input form__input_type_password user-form__input ${
-                  isErrors.password ? "register__input-invalid" : ""
+                  errors.password ? 'register__input-invalid' : ''
                 }`}
                 id="input-password"
                 name="password"
                 type="password"
-                value={isValues.password || ""}
+                value={values.password || ''}
                 onChange={handleChangeInput}
                 required
                 placeholder="Придумайте пароль"
                 minLength={5}
               />
-              {isErrors.password && (
-                <span className="register__error">{isErrors.password}</span>
+              {errors.password && (
+                <span className="register__error">{errors.password}</span>
               )}
             </label>
-            <p className="form__error-text">Что-то пошло не так...</p>
-
-            <button className="user-form__button" type="submit">
+            {error && <p className="form__error-text">{error}</p>}
+            <button
+              disabled={isDisable}
+              className="user-form__button"
+              type="submit"
+            >
               Зарегистрироваться
             </button>
             <p className="user-form__subtitle">
-              Уже зарегистрированы?{" "}
-              <Link to="/signin" className="user-form__link">
+              Уже зарегистрированы?{' '}
+              <Link
+                to="/signin"
+                className="user-form__link"
+              >
                 Войти
               </Link>
             </p>

@@ -58,8 +58,6 @@ npm run build
 * сборка с помощью CRA (webpack)
 * Javascript: классы, промисы, ES6 modules, etc
 * переиспользуемые компоненты React
-* React Hooks (useState, useEffect, useContext, useRef, кастомные хуки)
+* React Hooks (useState, useEffect, useContext)
 * работа с HTTP сервером с помощью fetch
-* Динамическая валидация форм средствами React
 * React-router-dom (Route, Redirect, Link), protected routes
-* Авторизация через передачу JWT-токена в cookies

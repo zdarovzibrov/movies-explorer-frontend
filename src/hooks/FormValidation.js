@@ -1,9 +1,8 @@
-import { useState , useCallback} from "react";
-
+import { useState, useCallback } from 'react';
 
 function FormValidation() {
-  const [isValues, setValues] = useState({});
-  const [isErrors, setErrors] = useState({});
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
   function handleChangeInput(evt) {
@@ -11,24 +10,24 @@ function FormValidation() {
     const valueInput = input.value;
     const nameInput = input.name;
 
-    setValues({ ...isValues, [nameInput]: valueInput });
-    setErrors({ ...isErrors, [nameInput]: input.validationMessage });
-    setIsValid(input.closest("form").checkValidity());
+    setValues({ ...values, [nameInput]: valueInput });
+    setErrors({ ...errors, [nameInput]: input.validationMessage });
+    setIsValid(input.closest('form').checkValidity());
   }
 
   const resetForm = useCallback(
-      (newValues = {}, newErrors = {}, newIsValid = false) => {
-        setValues(newValues);
-        setErrors(newErrors);
-        setIsValid(newIsValid);
-      },
-      [setValues, setErrors, setIsValid]
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
+      setValues(newValues);
+      setErrors(newErrors);
+      setIsValid(newIsValid);
+    },
+    [setValues, setErrors, setIsValid]
   );
 
   return {
     isValid,
-    isErrors,
-    isValues,
+    errors,
+    values,
     resetForm,
     handleChangeInput,
     setIsValid,

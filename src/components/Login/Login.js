@@ -1,74 +1,90 @@
-import React from "react";
-import "./Login.css";
-import { Link } from "react-router-dom";
-import logo from "../../images/circle-logo.svg";
-import FormValidation from "../../hooks/FormValidation";
+import React, { useState } from 'react';
+import './Login.css';
+import { Link } from 'react-router-dom';
+import logo from '../../images/circle-logo.svg';
+import FormValidation from '../../hooks/FormValidation';
 
 function Login({ onLogin }) {
-  const { isErrors, isValues, isValid, handleChangeInput } = FormValidation();
+  const { errors, values, handleChangeInput } = FormValidation();
+  const [error, setError] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onLogin( isValues )
+    onLogin(values, setError);
   };
+
+  const isDisable =
+    !values.email || !values.password || !!errors?.email || !!errors?.password;
 
   return (
     <div className="container__main">
       <div className="login">
-        <Link to="/" className="login__logo">
-          <img src={logo} alt="Логотип" />
+        <Link
+          to="/"
+          className="login__logo"
+        >
+          <img
+            src={logo}
+            alt="Логотип"
+          />
         </Link>
         <h2 className="login__title">Рады видеть!</h2>
 
-        <form className="user-form" onSubmit={handleSubmit}>
+        <form
+          className="user-form"
+          onSubmit={handleSubmit}
+        >
           <label className="user-form__field">
             E-mail
             <input
               className={`form__input form__input_type_email user-form__input logform__input ${
-                isErrors.email ? "register__input-invalid" : ""
+                errors.email ? 'register__input-invalid' : ''
               }`}
               id="input-userEmail"
               name="email"
               type="email"
               autoComplete="off"
-              value={isValues.email || ""}
+              value={values.email || ''}
               onChange={handleChangeInput}
               required
               placeholder="E-mail"
             />
-            <span className="register__error">{isErrors.email}</span>
+            <span className="register__error">{errors.email}</span>
           </label>
 
           <label className="user-form__field">
             Пароль
             <input
               className={`form__input form__input_type user-form__input logform__input ${
-                isErrors.password ? "register__input-invalid" : ""
+                errors.password ? 'register__input-invalid' : ''
               }`}
               id="input-password"
               name="password"
               type="password"
-              value={isValues.password || ""}
+              value={values.password || ''}
               onChange={handleChangeInput}
               required
               placeholder="Введите пароль"
             />
-            {isErrors.password && (
-              <span className="register__error">{isErrors.password}</span>
+            {errors.password && (
+              <span className="register__error">{errors.password}</span>
             )}
           </label>
+          {error && <p className="form__error-text">{error}</p>}
+
           <button
-            className={`user-form__button ${
-              !isValid ? "user-form__button_disabled" : ""
-            }`}
+            className="user-form__button"
             type="submit"
-            disabled={!isValid}
+            disabled={isDisable}
           >
             Войти
           </button>
           <p className="user-form__subtitle">
-            Ещё не зарегистрированы?{" "}
-            <Link to="/signup" className="user-form__link">
+            Ещё не зарегистрированы?{' '}
+            <Link
+              to="/signup"
+              className="user-form__link"
+            >
               Регистрация
             </Link>
           </p>

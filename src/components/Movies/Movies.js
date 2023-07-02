@@ -69,6 +69,7 @@ export default function Movies({ handleLikeClick, savedMovies, onCardDelete }) {
         }
     }, []);
 
+    
     useEffect(() => {
         if (localStorage.getItem('movies')) {
             const movies = JSON.parse(localStorage.getItem('movies'));

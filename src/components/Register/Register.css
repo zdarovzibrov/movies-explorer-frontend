@@ -82,10 +82,16 @@
   border: none;
   cursor: pointer;
 }
-.user-form__button:hover {
+
+.user-form__button:disabled {
+  background: gray;
+}
+
+.user-form__button:not(:disabled):hover {
   opacity: .6;
   transition: .4s ease-in-out;
 }
+
 .form__button-save_unactive {
   pointer-events: none;
   background: var(--color-white);

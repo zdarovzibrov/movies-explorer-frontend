@@ -1,15 +1,17 @@
-import "./Profile.css";
-import { useEffect, useContext } from 'react';
+import './Profile.css';
+import { useEffect, useContext, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
-import FormValidation from "../../hooks/FormValidation";
+import FormValidation from '../../hooks/FormValidation';
 
 export default function Profile({ onLogout, handleProfile }) {
-  const { isErrors, isValues, isValid, handleChangeInput, resetForm } = FormValidation();
+  const { errors, values, handleChangeInput, resetForm } =
+    FormValidation();
   const currentUser = useContext(CurrentUserContext);
+  const [error, setError] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleProfile(isValues);
+    handleProfile(values, setError);
   };
 
   useEffect(() => {
@@ -18,66 +20,77 @@ export default function Profile({ onLogout, handleProfile }) {
     }
   }, [currentUser, resetForm]);
 
+  const isDisable =
+    !values.name || !values.email || !!errors?.name || !!errors?.email;
+
   return (
     <>
       <div className="profile">
         <h2 className="profile__title">Привет, {currentUser.name}!</h2>
 
-        <form className="profile__form" onSubmit={handleSubmit}>
+        <form
+          className="profile__form"
+          onSubmit={handleSubmit}
+        >
           <label
             className={`profile__field profile__field_border ${
-              isErrors.name ? "register__input-invalid" : ""
+              errors.name ? 'register__input-invalid' : ''
             }`}
           >
             Имя
             <input
               className={`profile__input ${
-                isErrors.name ? "register__input-invalid" : ""
+                errors.name ? 'register__input-invalid' : ''
               }`}
               id="input-userName"
               name="name"
               type="text"
               autoComplete="off"
-              value={isValues.name || ""}
+              value={values.name || ''}
               onChange={handleChangeInput}
             />
-            {isErrors.name && (
-              <span className="register__error">{isErrors.name}</span>
+            {errors.name && (
+              <span className="register__error">{errors.name}</span>
             )}
           </label>
 
           <label
             className={`profile__field ${
-              isErrors.email ? "register__input-invalid" : ""
+              errors.email ? 'register__input-invalid' : ''
             }`}
           >
             E-mail
             <input
               className={`profile__input ${
-                isErrors.email ? "register__input-invalid" : ""
+                errors.email ? 'register__input-invalid' : ''
               }`}
               id="input-userEmail"
               name="email"
               type="email"
               autoComplete="off"
-              value={isValues.email || ""}
+              value={values.email || ''}
               onChange={handleChangeInput}
             />
-            {isErrors.email && (
-              <span className="register__error">{isErrors.email}</span>
+            {errors.email && (
+              <span className="register__error">{errors.email}</span>
             )}
           </label>
+          {error && <p className="form__error-text">{error}</p>}
+
           <div className="profile__btn">
             <button
-              className={`profile__edit ${
-                !isValid ? "user-form__button_disabled" : ""
-              }`}
+              className="profile__edit"
               type="submit"
-              disabled={!isValid}
+              disabled={isDisable}
             >
               Редактировать
             </button>
-            <button className="profile__logout" type="button" onClick={onLogout} to={"/sign-in"}>
+            <button
+              className="profile__logout"
+              type="button"
+              onClick={onLogout}
+              to={'/sign-in'}
+            >
               Выйти из аккаунта
             </button>
           </div>
