@@ -1,0 +1,35 @@
+const HEADER_SIGN_IN_BUTTON_LABEL = 'Войти';
+const HEADER_SIGN_UP_BUTTON_LABEL = 'Регистрация';
+const SEARCH_MOVIES_PLACEHOLDER = 'Фильм';
+const SEARCH_MOVIES_BUTTON = 'Найти';
+const SEARCH_MOVIES_ERROR_MESSAGE = 'Нужно ввести ключевое слово';
+const SEARCH_REASULT_MESSAGE = 'Фильмы не найдены';
+const SEARCH_MORE_LABEL = 'Ещё';
+const HEADER_FILM_LABEL = 'Фильмы';
+const HEADER_SAVE_FILM_LABEL = 'Сохраненные фильмы';
+const HEADER_USER_LABEL = 'Аккаунт';
+const HEADER_MAIN_LABEL = 'Главная';
+const BACK_BUTTON = 'Назад';
+const EDIT_BUTTON = 'Редактировать';
+const LOGOUT_BUTTON = 'Выйти из аккаунта';
+const EXIT_BUTTON = 'Войти';
+const REGISTER_BUTTON = 'Зарегистрироваться';
+
+export {
+  REGISTER_BUTTON,
+  EXIT_BUTTON,
+  LOGOUT_BUTTON,
+  EDIT_BUTTON,
+  BACK_BUTTON,
+  HEADER_MAIN_LABEL,
+  HEADER_USER_LABEL,
+  HEADER_SAVE_FILM_LABEL,
+  HEADER_FILM_LABEL,
+  SEARCH_MORE_LABEL,
+  SEARCH_REASULT_MESSAGE,
+  SEARCH_MOVIES_ERROR_MESSAGE,
+  SEARCH_MOVIES_BUTTON,
+  SEARCH_MOVIES_PLACEHOLDER,
+  HEADER_SIGN_IN_BUTTON_LABEL,
+  HEADER_SIGN_UP_BUTTON_LABEL,
+};
