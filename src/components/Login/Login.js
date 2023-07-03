@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import logo from '../../images/circle-logo.svg';
 import FormValidation from '../../hooks/FormValidation';
 
 function Login({ onLogin }) {
-  const { errors, values, handleChangeInput } = FormValidation();
+  const { errors, values, handleChangeInput, setErrors } = FormValidation();
   const [error, setError] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onLogin(values, setError);
   };
+
+  useEffect(() => {
+    if (values.email && !values.email.includes('.')) {
+      setErrors({ ...errors, email: 'Не корректный email' });
+    }
+  }, [values.email, setErrors]);
 
   const isDisable =
     !values.email || !values.password || !!errors?.email || !!errors?.password;

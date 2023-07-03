@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FormValidation from '../../hooks/FormValidation';
 import './Register.css';
 import logo from '../../images/circle-logo.svg';
+import { useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { EXIT_BUTTON, REGISTER_BUTTON } from '../../constatns';
 
 export default function Register({ onRegister }) {
-  const { errors, values, isValid, handleChangeInput } = FormValidation();
+  const { errors, values, isValid, handleChangeInput, setErrors } =
+    FormValidation();
   const [error, setError] = useState();
+  const currentUser = useContext(CurrentUserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +21,17 @@ export default function Register({ onRegister }) {
       return;
     }
   };
+
+  useEffect(() => {
+    if (values.email && !values.email.includes('.')) {
+      setErrors({ ...errors, email: 'Не корректный email' });
+    }
+  }, [values.email, setErrors]);
+
+  if (currentUser.email) {
+    navigate(-1);
+  }
+
   const isDisable =
     !values.name ||
     !values.email ||
@@ -107,7 +124,7 @@ export default function Register({ onRegister }) {
               className="user-form__button"
               type="submit"
             >
-              Зарегистрироваться
+              {REGISTER_BUTTON}
             </button>
             <p className="user-form__subtitle">
               Уже зарегистрированы?{' '}
@@ -115,7 +132,7 @@ export default function Register({ onRegister }) {
                 to="/signin"
                 className="user-form__link"
               >
-                Войти
+                {EXIT_BUTTON}
               </Link>
             </p>
           </form>

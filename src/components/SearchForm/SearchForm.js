@@ -1,13 +1,21 @@
-import React, {useState, useEffect} from "react";
-import Toggle from "../Toggle/Toggle";
-import "./SearchForm.css";
-import {useLocation} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import Toggle from '../Toggle/Toggle';
+import './SearchForm.css';
+import { useLocation } from 'react-router-dom';
+import {
+  SEARCH_MOVIES_BUTTON,
+  SEARCH_MOVIES_ERROR_MESSAGE,
+  SEARCH_MOVIES_PLACEHOLDER,
+} from '../../constatns';
 
-export default function SearchForm({ onSearchMovies, onFilter, isShortMovies }) {
+export default function SearchForm({
+  onSearchMovies,
+  onFilter,
+  isShortMovies,
+}) {
   const [isQueryError, setIsQueryError] = useState(false);
   const [query, setQuery] = useState('');
   const location = useLocation();
-
 
   function handleChangeQuery(e) {
     setQuery(e.target.value);
@@ -24,12 +32,14 @@ export default function SearchForm({ onSearchMovies, onFilter, isShortMovies }) 
   }
 
   useEffect(() => {
-    if (location.pathname === '/movies' && localStorage.getItem('movieSearch')) {
+    if (
+      location.pathname === '/movies' &&
+      localStorage.getItem('movieSearch')
+    ) {
       const localQuery = localStorage.getItem('movieSearch');
       setQuery(localQuery);
     }
   }, [location]);
-
 
   return (
     <>
@@ -43,16 +53,26 @@ export default function SearchForm({ onSearchMovies, onFilter, isShortMovies }) 
             className="search__input"
             id="search-input"
             type="text"
-            placeholder="Фильм"
+            placeholder={SEARCH_MOVIES_PLACEHOLDER}
             onChange={handleChangeQuery}
             value={query || ''}
           ></input>
-          <button className="search__btn" type="submit">
-            Найти
+          <button
+            className="search__btn"
+            type="submit"
+          >
+            {SEARCH_MOVIES_BUTTON}
           </button>
         </form>
-        <Toggle onFilter={onFilter} isShortMovies={isShortMovies}/>
-        {isQueryError && <span className="form__error-text">Нужно ввести ключевое слово</span>}
+        <Toggle
+          onFilter={onFilter}
+          isShortMovies={isShortMovies}
+        />
+        {isQueryError && (
+          <span className="form__error-text">
+            {SEARCH_MOVIES_ERROR_MESSAGE}
+          </span>
+        )}
       </section>
     </>
   );

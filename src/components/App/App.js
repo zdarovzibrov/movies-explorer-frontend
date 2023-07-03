@@ -17,12 +17,14 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [isLogged, setIsLogged] = useState(false);
-  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(true);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLogged) {
+      setIsLoading(true);
       Promise.all([mainApi.getProfile(), mainApi.getInitialCards()])
         .then(([user, cards]) => {
           setCurrentUser(user);
@@ -30,11 +32,15 @@ function App() {
         })
         .catch((err) => {
           console.error(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
   }, [isLogged]);
 
   useEffect(() => {
+    setIsLoading(true);
     mainApi
       .checkToken()
       .then((res) => {
@@ -43,6 +49,9 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [navigate]);
 
@@ -72,7 +81,7 @@ function App() {
         if (data.token) {
           setIsLogged(true);
           localStorage.setItem('token', data.token);
-          navigate('/movies');
+          navigate('/');
         }
       })
       .catch((err) => {
@@ -143,7 +152,9 @@ function App() {
             element={<Main />}
           />
         </Route>
-        <Route element={<ProtectedRoute isLogged={isLogged} />}>
+        <Route
+          element={<ProtectedRoute isLogged={isLoading ? true : isLogged} />}
+        >
           <Route
             element={
               <Layout
@@ -185,13 +196,17 @@ function App() {
           </Route>
         </Route>
         <Route
-          path="/signin"
-          element={<Login onLogin={handleLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<Register onRegister={handleRegister} />}
-        />
+          element={<ProtectedRoute isLogged={isLoading ? true : !isLogged} />}
+        >
+          <Route
+            path="/signin"
+            element={<Login onLogin={handleLogin} />}
+          />
+          <Route
+            path="/signup"
+            element={<Register onRegister={handleRegister} />}
+          />
+        </Route>
         <Route
           path="*"
           element={<NotFound />}

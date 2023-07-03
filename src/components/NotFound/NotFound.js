@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./NotFound.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './NotFound.css';
+import { BACK_BUTTON } from '../../constatns';
 
 function NotFound() {
   return (
@@ -8,8 +9,11 @@ function NotFound() {
       <section className="pagenot-found">
         <h2 className="pagenot-found__title">404</h2>
         <p className="pagenot-found__subtitle">Страница не найдена.</p>
-        <Link to="/" className="pagenot-found__btn">
-          Назад
+        <Link
+          to={-1}
+          className="pagenot-found__btn"
+        >
+          {BACK_BUTTON}
         </Link>
       </section>
     </div>

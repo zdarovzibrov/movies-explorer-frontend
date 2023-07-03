@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
+import {
+  HEADER_FILM_LABEL,
+  HEADER_MAIN_LABEL,
+  HEADER_SAVE_FILM_LABEL,
+  HEADER_USER_LABEL,
+} from '../../constatns';
 
 export default function Navigation({ isDark, isOpen, onClose }) {
   // const
@@ -16,7 +22,7 @@ export default function Navigation({ isDark, isOpen, onClose }) {
               : 'navi__btn navi__btn-link'
           }
         >
-          Фильмы
+          {HEADER_FILM_LABEL}
         </NavLink>
         <NavLink
           to="/saved-movies"
@@ -26,7 +32,7 @@ export default function Navigation({ isDark, isOpen, onClose }) {
               : 'navi__btn navi__btn-link'
           }
         >
-          Сохраненные фильмы
+          {HEADER_SAVE_FILM_LABEL}
         </NavLink>
       </div>
       <div className="navi__btn-container">
@@ -34,7 +40,7 @@ export default function Navigation({ isDark, isOpen, onClose }) {
           to="/profile"
           className="navi__btn navi__btn_account"
         >
-          Аккаунт
+          {HEADER_USER_LABEL}
         </Link>
       </div>
       {isOpen && (
@@ -52,27 +58,27 @@ export default function Navigation({ isDark, isOpen, onClose }) {
                 className="navi__item"
                 activeClassName="navi__item_active"
               >
-                Главная
+                {HEADER_MAIN_LABEL}
               </NavLink>
               <NavLink
                 to="/movies"
                 className="navi__item"
                 activeClassName="navi__item_active"
               >
-                Фильмы
+                {HEADER_FILM_LABEL}
               </NavLink>
               <NavLink
                 to="/saved-movies"
                 className="navi__item"
                 activeClassName="navi__item_active"
               >
-                Сохранённые фильмы
+                {HEADER_SAVE_FILM_LABEL}
               </NavLink>
               <Link
                 to="/profile"
                 className="navi__btn navi__btn_account navi__btn_end"
               >
-                Аккаунт
+                {HEADER_USER_LABEL}
               </Link>
             </nav>
           </div>
